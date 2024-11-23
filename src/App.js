@@ -12,6 +12,9 @@ app.get("/jagan", (req, res) => {
     res.send("This is the Jagan page");
 });
 
+app.put("/jaffa",(req,res)=>{
+    res.send("you are jaffa");
+});
 // Test page
 app.get("/test", (req, res) => {
     res.send("This is the test page");
