@@ -8,7 +8,8 @@ app.get("/", (req, res) => {
 });
 
 // Jagan page
-app.get("/jagan", (req, res) => {
+app.get("/jagan/:name/:age/:class", (req, res) => {
+    console.log(req.params);
     res.send("This is the Jagan page");
 });
 
