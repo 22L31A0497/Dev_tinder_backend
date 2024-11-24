@@ -4,8 +4,8 @@
   "description": "My tinder app",
   "main": "index.js",
   "scripts": {
-    "start" :"nodemon src/app.js",
-    "dev":"nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "keywords": [
     "Nodejs"
@@ -13,6 +13,7 @@
   "author": "Jaganmohan Rao Kuna",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2"
   }
 }
