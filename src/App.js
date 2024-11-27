@@ -9,22 +9,12 @@ app.use(express.json());
 
 // POST endpoint for user signup
 app.post("/signup", async (req, res) => {
-    try {
-        // User data included in the POST request directly
-        const user = new User({
-            firstName: "sai sirisha",
-            lastName: "Kuna",
-            emailId: "siri@gmail.com",
-            password: "SecurePasssiri123",
-            age: 19,
-            gender: "Female"
-        });
-
-        // Save the user in the database
+    const user = new User(req.body);
+    try{
         await user.save();
 
         // Respond with success
-        res.status(201).send({ message: "User added successfully", user });
+        res.status(201).send({ message: "User added successfully"});
     } catch (error) {
         if (error.code === 11000) {
             // Handle duplicate email error
