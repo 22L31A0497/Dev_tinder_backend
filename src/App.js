@@ -26,6 +26,65 @@ app.post("/signup", async (req, res) => {
         }
     }
 });
+ 
+app.get("/users", async(req,res)=>{
+    const userEmail = req.body.emailId;
+    try{
+        const users = await User.find({emailId:userEmail});
+        if(users.length === 0){
+            res.status(404).send("👤user not found boss 🤦‍♂️");
+        }
+        else{
+            res.send(users);
+        }
+
+    }
+    catch(err){
+        res.status(400).send("Something went wrong Boss");
+        
+    }
+
+});
+
+ app.get("/feed", async(req,res)=>{
+    try{
+        const users = await User.find({});
+        res.send(users);
+
+    }
+    catch(err){
+        res.status(400).send("Something went wrong Boss");
+        
+    }
+
+
+  });
+
+  app.delete("/user", async(req,res)=>{
+
+    const userId = req.body._Id;
+
+    try{
+        const user = await User.findByIdAndDelete(userId);
+        res.send("user deleted successfully");
+    }
+    catch(err){
+        res.status(400).send("Something went wrong Boss");
+    }
+  })
+
+  app.patch("/patch", async(req,res)=>{
+    const userId = req.body._id;
+    const data = req.body;
+    try{
+        await User.findByIdAndUpdate({_id: userId }, data);
+        res.send("user updated successfully");
+
+    }
+    catch (err){
+        res.status(400).send("Something went wrong");
+    }
+  })
 
 // Connect to the database and start the server
 connectDB()
