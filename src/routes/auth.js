@@ -70,5 +70,16 @@ authRouter.post("/login",async(req,res)=>{
 
 // POST endpoint for user signup
 
+authRouter.post("/logout",async(req,res)=>{
+
+    //cleanup activites also may you can write here and expiring the cookies 
+    
+   res.cookie("token", null,{
+    expires:new Date(Date.now()),
+   });
+   res.send("User Logout Successfully 🤦‍♂️🤦‍♂️😢");
+
+})
+
 
 module.exports=authRouter;
