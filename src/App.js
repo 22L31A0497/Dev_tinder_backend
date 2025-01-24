@@ -25,7 +25,7 @@ connectDB()
     .then(() => {
         console.log("Database connected");
         app.listen(6969, () => {
-            console.log("Boss 😎 Your 6969 😜 Server is running very fast. Don't try to catch 🤣");
+            console.log("Boss 😎 Your Jagan 💞 Siri 😜 Server is running on port 6969 very fast. Don't try to catch 🤣");
         });
     })
     .catch((err) => {

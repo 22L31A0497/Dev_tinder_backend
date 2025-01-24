@@ -12,7 +12,6 @@ const {validateEditProfileData}= require("../utils/validation");
 
 profileRouter.use(cookieParser());
 
-
 profileRouter.get(("/profile/view"),userAuth,async(req,res)=>{
     try{
      const cookies = req.cookies;
