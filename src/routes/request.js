@@ -30,8 +30,9 @@ requestRouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
 
      if(!toUser){
         return res.status(404).json({
-           message:";🤦‍♂️🤦 the Alien ur sending request that is not present in our data base"
+           message:";🤦‍♂️🤦 the Alien ur sending request that is not present in our data base",
         });
+        
      }
    // if there is an existing connection request
 
@@ -67,7 +68,39 @@ requestRouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
     catch(err){
         res.status(400).send("ERROR: "+ err.message);
     };
- })
+ });
+ 
+ requestRouter.post("/request/review/:status/:requestId", userAuth, async (req, res) => {
+   try {
+       const { status, requestId } = req.params;  
+       const loggedInUser = req.user;
+
+       const allowedStatus = ["accepted", "rejected"];
+       if (!allowedStatus.includes(status)) {
+           return res.status(400).json({ message: "Status is not allowed!" });
+       }
+
+       const connectionRequest = await ConnectionRequest.findOne({
+         _id: requestId,
+         toUserId: loggedInUser._id,
+         status: "interested", // Fixed spelling from "intrested" to "interested"
+       });
+
+       if (!connectionRequest) {
+         return res.status(400).json({ message: "Connection request not found" });
+       }
+
+       connectionRequest.status = status;
+       const data = await connectionRequest.save();
+
+       return res.json({ message: "Connection Request " + status, data }); // Added 'return' to prevent duplicate response
+   } 
+   catch (err) {
+       res.status(400).json({ message: "ERROR: " + err.message });
+   }
+});
+
 
  module.exports = requestRouter; 
 
+ 
