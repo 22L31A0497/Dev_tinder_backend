@@ -1,4 +1,4 @@
-Create a repository
+Creating a repository
 
 Initialize the repository
 
