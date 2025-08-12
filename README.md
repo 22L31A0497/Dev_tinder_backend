@@ -1,3 +1,5 @@
+My daily progress 
+
 Creating a repository
 
 Initialize the repository
